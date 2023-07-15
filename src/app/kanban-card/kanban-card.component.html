@@ -1,0 +1,23 @@
+<mat-card class="kanban-card" (click)="openDialog()">
+    <mat-card-header>
+        <mat-card-title>{{ task.title }}</mat-card-title>
+        <mat-card-subtitle>Użytkownik: {{ task.userAttached }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div
+            *ngIf="task.subtasks == null || task.parents == null || task.subtasks.length > 0 || task.parents.length > 0">
+            <ul>
+                <li *ngFor="let subtask of task.subtasks">
+                    <mat-checkbox (click)="$event.stopPropagation()">
+                        {{subtask.title}}
+                    </mat-checkbox>
+                </li>
+                <li *ngFor="let parent of task.parents">
+                    <mat-checkbox (click)="$event.stopPropagation()">
+                        {{parent.title}}
+                    </mat-checkbox>
+                </li>
+            </ul>
+        </div>
+    </mat-card-content>
+</mat-card>

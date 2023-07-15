@@ -1,0 +1,15 @@
+.kanban-card {
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.kanban-card:hover {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 8px 24px 0 rgba(0, 0, 0, 0.22);
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}

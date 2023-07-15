@@ -1,0 +1,53 @@
+<ng-template #taskDialog ngIf="data">
+    <h2 mat-dialog-title>{{task.title}} - #{{task.id}}</h2>
+
+    <mat-dialog-content>
+        <form [formGroup]="form" (ngSubmit)="save()">
+            <div class="form-section">
+                <h2>Tytuł zadania</h2>
+                <input matInput type="text" matInput placeholder="Tytuł zadania" formControlName="title"
+                    value="{{task.title}}" />
+            </div>
+
+
+            <div class="form-section">
+                <h2>Opis zadania</h2>
+                <textarea matInput placeholder="Opis zadania" [rows]="5"
+                    formControlName="description">{{task.description}}</textarea>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="form-section">
+                <h2>Zadania powiązane - dzieci (do dokończenia formatka edycji)</h2>
+                <ul>
+                    <li *ngFor="let subtask of task.subtasks">{{subtask.title}}</li>
+                    <span *ngIf="task.subtasks == null || task.subtasks.length <= 0">Brak danych</span>
+                </ul>
+            </div>
+
+
+            <div class="form-section">
+                <h2>Zadania powiązane - rodzice (do dokończenia formatka edycji)</h2>
+                <ul>
+                    <li *ngFor="let parent of task.parents">{{parent.title}}</li>
+                    <h3 *ngIf="task.parents == null || task.parents.length <= 0">Brak danych</h3>
+                </ul>
+
+            </div>
+
+            <mat-card-actions *ngIf="task">
+                <mat-card-footer>
+                    <mat-card-subtitle>Data utworzenia: {{ task.dateOfCreation | date:'short'}}</mat-card-subtitle>
+                    <mat-card-subtitle>Data modyfikacji: {{ task.dateOfModification | date:'short'}}</mat-card-subtitle>
+                </mat-card-footer>
+            </mat-card-actions>
+
+            <mat-dialog-actions align="end">
+                <button mat-button (click)="deleteTask($event)" color="warn" cdkFocusInitial>Usuń</button>
+                <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+                <button mat-button type="submit" cdkFocusInitial>Ok</button>
+            </mat-dialog-actions>
+        </form>
+    </mat-dialog-content>
+</ng-template>

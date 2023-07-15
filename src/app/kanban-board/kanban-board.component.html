@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>{{ kanban.name }}</span>
+        <mat-divider [vertical]="true"></mat-divider>
+        <span>{{ kanban.totalNumberOfTasks }} zadań</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div cdkDropListGroup class="kanban-container">
+    <div class="kanban-column" *ngFor="let column of kanban?.columns" cdkDropList [cdkDropListData]="column.tasks"
+        (cdkDropListDropped)="drop($event, column)">
+        <h2 mat-subheader>{{ column.name }}</h2>
+        <div class="kanban-card-container">
+            <app-kanban-card (deleteTask)="onDeleteTask($event)" *ngFor="let task of column?.tasks" [task]="task"
+                cdkDrag></app-kanban-card>
+        </div>
+
+        <mat-toolbar class="kanban-add-task">
+            <span class="toolbar-spacer"></span>
+            <button mat-raised-button color="primary" (click)="openDialog(column)">+</button>
+        </mat-toolbar>
+    </div>
+</div>

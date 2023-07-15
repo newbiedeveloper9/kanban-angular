@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.kanban-container {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  width: 95%;
+}
+
+.kanban-column {
+  flex: 1;
+  width: 26%;
+  margin: 0 10px;
+  padding: 10px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.kanban-card-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.form-section {
+  display: flexbox;
+  text-align: center;
+  margin: 25px;
+}
+
+.form-section > input,
+.form-section > textarea {
+  width: 100%;
+}
+
+.form-section > ul > li {
+  list-style-type: none;
+}
