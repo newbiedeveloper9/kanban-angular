@@ -21,12 +21,14 @@ export class TaskDialogComponent {
     this.form = fb.group({
       title: [this.task.title],
       description: [this.task.description],
+      userAttached: [this.task.userAttached],
     });
   }
 
   save(): void {
     this.task.title = this.form?.value?.title ?? '';
     this.task.description = this.form?.value?.description ?? '';
+    this.task.userAttached = this.form?.value?.userAttached ?? '';
 
     this.dialogRef.close({ save: true });
   }

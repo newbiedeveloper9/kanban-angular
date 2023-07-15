@@ -3,6 +3,7 @@
         <span>{{ kanban.name }}</span>
         <mat-divider [vertical]="true"></mat-divider>
         <span>{{ kanban.totalNumberOfTasks }} zadań</span>
+        <button mat-button (click)="logout()" color="accent">Wyloguj</button>
     </mat-toolbar-row>
 </mat-toolbar>
 

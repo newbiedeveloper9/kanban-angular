@@ -19,7 +19,7 @@
             <mat-divider></mat-divider>
 
             <div class="form-section">
-                <h2>Zadania powiązane - dzieci (do dokończenia formatka edycji)</h2>
+                <h2>Zadania powiązane - dzieci</h2>
                 <ul>
                     <li *ngFor="let subtask of task.subtasks">{{subtask.title}}</li>
                     <span *ngIf="task.subtasks == null || task.subtasks.length <= 0">Brak danych</span>
@@ -28,7 +28,7 @@
 
 
             <div class="form-section">
-                <h2>Zadania powiązane - rodzice (do dokończenia formatka edycji)</h2>
+                <h2>Zadania powiązane - rodzice</h2>
                 <ul>
                     <li *ngFor="let parent of task.parents">{{parent.title}}</li>
                     <h3 *ngIf="task.parents == null || task.parents.length <= 0">Brak danych</h3>

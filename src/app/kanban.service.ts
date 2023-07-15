@@ -10,8 +10,8 @@ import { Board, KanbanBoard, Task } from './interfaces/Models';
 export class KanbanService {
   private apiUrl = 'https://localhost:44314';
   private headers = new HttpHeaders({
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjEyMGYxMjhlLWFiNGItNDBlMi1iZmJhLTg5YzgxN2E5ODMwYiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwidWlkIjoiM2Y5YmY5ZWItN2EyNS00NWVlLTkxMmItYjFlMzA0MmFjMDMwIiwiaXAiOiIxNzIuMTcuMC4yIiwicm9sZXMiOlsiQWRtaW4iLCJNb2RlcmF0b3IiLCJCYXNpYyJdLCJleHAiOjE2OTE5NTA4NzksImlzcyI6IklkZW50aXR5IiwiYXVkIjoiSWRlbnRpdHlVc2VyIn0.86G7JDjRXiJo9sktDLea4du6jC5mjHd66CNnl5CfpZk',
+    // Authorization:
+    //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsImp0aSI6IjEyMGYxMjhlLWFiNGItNDBlMi1iZmJhLTg5YzgxN2E5ODMwYiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwidWlkIjoiM2Y5YmY5ZWItN2EyNS00NWVlLTkxMmItYjFlMzA0MmFjMDMwIiwiaXAiOiIxNzIuMTcuMC4yIiwicm9sZXMiOlsiQWRtaW4iLCJNb2RlcmF0b3IiLCJCYXNpYyJdLCJleHAiOjE2OTE5NTA4NzksImlzcyI6IklkZW50aXR5IiwiYXVkIjoiSWRlbnRpdHlVc2VyIn0.86G7JDjRXiJo9sktDLea4du6jC5mjHd66CNnl5CfpZk',
     'Content-Type': 'application/json',
   });
 
@@ -35,7 +35,6 @@ export class KanbanService {
         headers: this.headers,
       })
       .pipe((x) => {
-        console.log(x);
         return x;
       });
   }

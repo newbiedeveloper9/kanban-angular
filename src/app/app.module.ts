@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import {
   MatDialogModule,
@@ -19,12 +19,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { KanbanCardComponent } from './kanban-card/kanban-card.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 import { KanbanProjectsComponent } from './kanban-projects/kanban-projects.component';
+import { LoginPanelComponent } from './login-panel/login-panel.component';
+
+import { JwtInterceptor } from './jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { KanbanProjectsComponent } from './kanban-projects/kanban-projects.compo
     KanbanCardComponent,
     TaskDialogComponent,
     KanbanProjectsComponent,
+    LoginPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,7 @@ import { KanbanProjectsComponent } from './kanban-projects/kanban-projects.compo
     MatFormFieldModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatInputModule,
   ],
   providers: [
     {
@@ -60,6 +66,11 @@ import { KanbanProjectsComponent } from './kanban-projects/kanban-projects.compo
     {
       provide: MatDialogRef,
       useValue: [],
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

@@ -9,6 +9,7 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 import { KanbanService } from '../kanban.service';
 import { Board, Column, Task } from '../interfaces/Models';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-kanban-board',
@@ -27,7 +28,8 @@ export class KanbanBoardComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private kanbanService: KanbanService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -81,6 +83,7 @@ export class KanbanBoardComponent implements OnInit {
   }
 
   openDialog(column: Column): void {
+    this.task.userAttached = this.authService.currentUserValue.userName;
     this.task.columnId = column.id;
     this.task.status = column.name;
     const dialogRef = this.dialog.open(TaskDialogComponent, {
@@ -110,5 +113,9 @@ export class KanbanBoardComponent implements OnInit {
         .tasks.filter((t) => t.id !== task.id);
 
     this.kanban.totalNumberOfTasks--;
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
