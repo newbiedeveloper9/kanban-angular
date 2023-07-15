@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import { KanbanBoardComponent } from './kanban-board/kanban-board.component';
 import { KanbanCardComponent } from './kanban-card/kanban-card.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
+import { KanbanProjectsComponent } from './kanban-projects/kanban-projects.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     KanbanBoardComponent,
     KanbanCardComponent,
     TaskDialogComponent,
+    KanbanProjectsComponent,
   ],
   imports: [
     BrowserModule,

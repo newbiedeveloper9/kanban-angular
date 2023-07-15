@@ -1,0 +1,9 @@
+<footer>
+    <mat-toolbar>
+        <mat-toolbar-row layout-align="center center">
+            <a *ngFor="let board of boards" style="margin-left: 20px;" [routerLink]="['/kanban', board.id]">
+                {{board.name}}
+            </a>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</footer>

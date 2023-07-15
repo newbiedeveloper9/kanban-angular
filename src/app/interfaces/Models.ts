@@ -30,3 +30,13 @@ export interface Task {
   dateOfModification?: string;
   columnId?: string;
 }
+
+export interface KanbanBoard {
+  name: string;
+  totalNumberOfTasks: number;
+  columns: any[];
+  id: string;
+  order: number;
+  dateOfCreation: string;
+  dateOfModification: string;
+}

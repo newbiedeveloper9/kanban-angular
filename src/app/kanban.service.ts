@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Board, Task } from './interfaces/Models';
+import { map, catchError } from 'rxjs/operators';
+import { Board, KanbanBoard, Task } from './interfaces/Models';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,12 @@ export class KanbanService {
   });
 
   constructor(private http: HttpClient) {}
+
+  getBoards(): Observable<KanbanBoard[]> {
+    return this.http.get<KanbanBoard[]>(this.apiUrl + '/api/board', {
+      headers: this.headers,
+    });
+  }
 
   getBoard(id: string): Observable<Board> {
     return this.http.get<Board>(this.apiUrl + '/api/board/' + id, {

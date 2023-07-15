@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import {
   CdkDragDrop,
@@ -9,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
 import { KanbanService } from '../kanban.service';
 import { Board, Column, Task } from '../interfaces/Models';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-kanban-board',
@@ -25,19 +25,21 @@ export class KanbanBoardComponent implements OnInit {
   };
 
   constructor(
+    private route: ActivatedRoute,
     private kanbanService: KanbanService,
     private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
-    this.kanbanService
-      .getBoard('11111111-1111-1111-1111-111111111111')
-      .subscribe((data) => {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      let id = params.get('id') ?? '';
+      this.kanbanService.getBoard(id).subscribe((data) => {
         data.columns.forEach((column) => {
           column.tasks.sort((a, b) => a.order - b.order);
         });
         this.kanban = data;
       });
+    });
   }
 
   drop(event: CdkDragDrop<Task[], any>, targetColumn: Column): void {
@@ -88,14 +90,14 @@ export class KanbanBoardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
       if (result.save === true) {
         this.kanbanService.createTask(this.task).subscribe((data) => {
-          console.log(data);
-          this.task.id = data.id;
-          this.kanban.columns
-            .filter((col) => col.id === column.id)[0]
-            .tasks.push(this.task);
+          this.kanbanService.getBoard(this.kanban.id).subscribe((data) => {
+            data.columns.forEach((column) => {
+              column.tasks.sort((a, b) => a.order - b.order);
+            });
+            this.kanban = data;
+          });
         });
       }
     });
@@ -106,5 +108,7 @@ export class KanbanBoardComponent implements OnInit {
       this.kanban.columns
         .filter((col) => col.id === task.columnId)[0]
         .tasks.filter((t) => t.id !== task.id);
+
+    this.kanban.totalNumberOfTasks--;
   }
 }

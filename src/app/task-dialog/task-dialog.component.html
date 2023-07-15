@@ -44,7 +44,8 @@
             </mat-card-actions>
 
             <mat-dialog-actions align="end">
-                <button mat-button (click)="deleteTask($event)" color="warn" cdkFocusInitial>Usuń</button>
+                <button *ngIf="data.addTask === null || data.addTask === undefined" mat-button
+                    (click)="deleteTask($event)" color="warn" cdkFocusInitial>Usuń</button>
                 <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
                 <button mat-button type="submit" cdkFocusInitial>Ok</button>
             </mat-dialog-actions>
